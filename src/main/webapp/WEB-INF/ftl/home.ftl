@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="_csrf" type="org.springframework.security.web.csrf.CsrfToken" -->
-<#-- @ftlvariable name="currentUser" type="com.faost.security.domain.CurrentUser" -->
+<#-- @ftlvariable name="currentUser" type="com.faost.security.domain.security.CurrentUser" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

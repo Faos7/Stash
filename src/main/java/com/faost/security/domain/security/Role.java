@@ -1,4 +1,4 @@
-package com.faost.security.domain;
+package com.faost.security.domain.security;
 
 /**
  * Created by faos7 on 11.09.16.

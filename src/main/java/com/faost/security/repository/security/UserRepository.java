@@ -1,6 +1,6 @@
-package com.faost.security.repository;
+package com.faost.security.repository.security;
 
-import com.faost.security.domain.User;
+import com.faost.security.domain.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

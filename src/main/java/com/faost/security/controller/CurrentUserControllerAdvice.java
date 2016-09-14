@@ -1,6 +1,6 @@
 package com.faost.security.controller;
 
-import com.faost.security.domain.CurrentUser;
+import com.faost.security.domain.security.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;

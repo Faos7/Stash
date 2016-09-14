@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="users" type="java.util.List<com.faost.security.domain.User>" -->
+<#-- @ftlvariable name="users" type="java.util.List<com.faost.security.domain.security.User>" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,8 +1,8 @@
 package com.faost.security.service.user;
 
-import com.faost.security.domain.User;
-import com.faost.security.domain.UserCreateForm;
-import com.faost.security.repository.UserRepository;
+import com.faost.security.domain.security.User;
+import com.faost.security.domain.security.UserCreateForm;
+import com.faost.security.repository.security.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

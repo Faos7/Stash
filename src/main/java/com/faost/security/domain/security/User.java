@@ -1,5 +1,7 @@
-package com.faost.security.domain;
+package com.faost.security.domain.security;
 
+
+import com.faost.security.domain.security.Role;
 
 import javax.persistence.*;
 import java.io.Serializable;

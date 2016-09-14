@@ -1,4 +1,4 @@
-package com.faost.security.domain;
+package com.faost.security.domain.security;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

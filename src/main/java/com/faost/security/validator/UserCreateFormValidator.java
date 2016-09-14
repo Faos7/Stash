@@ -1,6 +1,6 @@
 package com.faost.security.validator;
 
-import com.faost.security.domain.UserCreateForm;
+import com.faost.security.domain.security.UserCreateForm;
 import com.faost.security.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,8 +1,8 @@
 package com.faost.security.service.current.user;
 
 
-import com.faost.security.domain.CurrentUser;
-import com.faost.security.domain.Role;
+import com.faost.security.domain.security.CurrentUser;
+import com.faost.security.domain.security.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

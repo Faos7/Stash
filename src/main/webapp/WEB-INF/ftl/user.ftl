@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="user" type="com.faost.security.domain.User" -->
+<#-- @ftlvariable name="user" type="com.faost.security.domain.security.User" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

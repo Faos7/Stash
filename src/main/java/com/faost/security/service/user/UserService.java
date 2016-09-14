@@ -1,7 +1,7 @@
 package com.faost.security.service.user;
 
-import com.faost.security.domain.User;
-import com.faost.security.domain.UserCreateForm;
+import com.faost.security.domain.security.User;
+import com.faost.security.domain.security.UserCreateForm;
 
 import java.util.Collection;
 import java.util.Optional;

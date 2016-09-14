@@ -1,7 +1,7 @@
 package com.faost.security.service.current.user;
 
-import com.faost.security.domain.CurrentUser;
-import com.faost.security.domain.User;
+import com.faost.security.domain.security.CurrentUser;
+import com.faost.security.domain.security.User;
 import com.faost.security.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

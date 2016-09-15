@@ -24,7 +24,7 @@ public class Student implements Serializable{
     private String thirdName;
 
     @Column(name = "RFID_number")
-    private Long RFIDNumber;
+    private Long numberRFID;
 
     @Column(name = "Phone_numb")
     private Long phoneNumb;
@@ -36,12 +36,12 @@ public class Student implements Serializable{
     @OneToMany(mappedBy = "student")
     private List<Book> books;
 
-    public Long getRFIDNumber() {
-        return RFIDNumber;
+    public Long getNumberRFID() {
+        return numberRFID;
     }
 
-    public void setRFIDNumber(Long RFIDNumber) {
-        this.RFIDNumber = RFIDNumber;
+    public void setNumberRFID(Long numberRFID) {
+        this.numberRFID = numberRFID;
     }
 
     public void deleteBook(Book book){

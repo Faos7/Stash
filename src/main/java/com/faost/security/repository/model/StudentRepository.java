@@ -14,7 +14,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     Collection<Optional<Student>> findManyByThirdName(String thirdName);
 
-    Optional<Student> findOneByRFIDNumber(long RFIDNumber);
+    Optional<Student> findOneByNumberRFID(Long RFIDNumber);
 
     Optional<Student> findOneByPhoneNumb(long phoneNumb);
 }

@@ -1,5 +1,7 @@
 package com.faost.security.domain.model;
 
+import com.faost.security.domain.security.User;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,8 +12,9 @@ import java.util.List;
 public class Student implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_student", nullable = false)
+    @SequenceGenerator(name="st_sequence",sequenceName="student_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="st_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer studentId;
 
     @Column(name = "First_Name")
@@ -33,8 +36,19 @@ public class Student implements Serializable{
     @JoinColumn(name = "Id_group")
     private Group group;
 
+    @OneToOne(optional = false, mappedBy = "student")
+    private User user;
+
     @OneToMany(mappedBy = "student")
     private List<Book> books;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getNumberRFID() {
         return numberRFID;

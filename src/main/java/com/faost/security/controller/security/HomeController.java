@@ -1,4 +1,4 @@
-package com.faost.security.controller;
+package com.faost.security.controller.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

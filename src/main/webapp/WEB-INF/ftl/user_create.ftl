@@ -34,7 +34,8 @@
     <div>
         <label for="role">Role</label>
         <select name="role" id="role" required>
-            <option <#if form.role == 'USER'>selected</#if>>USER</option>
+            <option <#if form.role == 'STUDENT'>selected</#if>>STUDENT</option>
+            <option <#if form.role == 'LIBRARIAN'>selected</#if>>LIBRARIAN</option>
             <option <#if form.role == 'ADMIN'>selected</#if>>ADMIN</option>
         </select>
     </div>

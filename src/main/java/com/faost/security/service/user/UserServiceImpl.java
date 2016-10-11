@@ -1,7 +1,12 @@
 package com.faost.security.service.user;
 
+import com.faost.security.domain.model.Librarian;
+import com.faost.security.domain.model.Student;
+import com.faost.security.domain.security.Role;
 import com.faost.security.domain.security.User;
 import com.faost.security.domain.security.UserCreateForm;
+import com.faost.security.repository.model.LibrarianRepository;
+import com.faost.security.repository.model.StudentRepository;
 import com.faost.security.repository.security.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +23,16 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
+    private final StudentRepository studentRepository;
+    private final LibrarianRepository librarianRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           StudentRepository studentRepository,
+                           LibrarianRepository librarianRepository) {
         this.userRepository = userRepository;
+        this.studentRepository = studentRepository;
+        this.librarianRepository = librarianRepository;
     }
 
     @Override
@@ -48,6 +59,17 @@ public class UserServiceImpl implements UserService {
         user.setEmail(form.getEmail());
         user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
         user.setRole(form.getRole());
+        if (user.getRole().equals(Role.STUDENT)){
+            Student student = new Student();
+            student.setUser(user);
+            user.setStudent(student);
+            studentRepository.save(student);
+        }else if (user.getRole().equals(Role.LIBRARIAN)){
+            Librarian librarian = new Librarian();
+            librarian.setUser(user);
+            user.setLibrarian(librarian);
+            librarianRepository.save(librarian);
+        }
         return userRepository.save(user);
     }
 

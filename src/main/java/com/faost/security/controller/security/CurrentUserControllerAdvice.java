@@ -1,4 +1,4 @@
-package com.faost.security.controller;
+package com.faost.security.controller.security;
 
 import com.faost.security.domain.security.CurrentUser;
 import org.slf4j.Logger;

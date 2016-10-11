@@ -1,5 +1,7 @@
 package com.faost.security.domain.model;
 
+import com.faost.security.domain.security.User;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,8 +11,9 @@ import java.io.Serializable;
 public class Librarian implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_librarian", nullable = false)
+    @SequenceGenerator(name="librarian_sequence",sequenceName="librarian_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="librarian_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer librarianId;
 
     @Column(name = "First_Name")
@@ -21,6 +24,9 @@ public class Librarian implements Serializable{
 
     @Column(name = "Third_Name")
     private String thirdName;
+
+    @OneToOne(optional = false, mappedBy = "librarian")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "Id_library")
@@ -33,6 +39,14 @@ public class Librarian implements Serializable{
         this.library = library;
         this.thirdName = thirdName;
         this.secondName = secondName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Library getLibrary() {

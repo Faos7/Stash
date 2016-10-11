@@ -10,8 +10,9 @@ import java.util.List;
 public class Library implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_library", nullable = false)
+    @SequenceGenerator(name="lib_sequence",sequenceName="lib_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="lib_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer libraryId;
 
     @Column(name = "name")

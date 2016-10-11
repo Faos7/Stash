@@ -1,7 +1,8 @@
 package com.faost.security.domain.security;
 
 
-import com.faost.security.domain.security.Role;
+import com.faost.security.domain.model.Librarian;
+import com.faost.security.domain.model.Student;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,9 +12,10 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
+    @SequenceGenerator(name="pk_sequence",sequenceName="user_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="pk_sequence")
+    @Column(name="id", unique=true, nullable=false)
+    private Long id;
 
     @Column(name = "email")
     private String email;
@@ -25,7 +27,31 @@ public class User implements Serializable{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Integer getId() {
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "STUDENT_ID")
+    private Student student;
+
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "LIBRARIAN_ID")
+    private Librarian librarian;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
+    }
+
+    public Long getId() {
         return id;
     }
 

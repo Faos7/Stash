@@ -2,16 +2,29 @@ package com.faost.security.domain.model.create;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 public class GroupCreateForm {
 
     @NotEmpty
     private String name = "";
 
     @NotEmpty
-    private String universityName = "";
+    private String facultyName = "";
+
+    @NotNull
+    private int courseNumber = -1;
 
     @NotEmpty
-    private int courseNumber;
+    private String universityName;
+
+    public String getUniversityName() {
+        return universityName;
+    }
+
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
+    }
 
     public String getName() {
         return name;
@@ -21,12 +34,12 @@ public class GroupCreateForm {
         this.name = name;
     }
 
-    public String getUniversityName() {
-        return universityName;
+    public String getFacultyName() {
+        return facultyName;
     }
 
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
 
     public int getCourseNumber() {

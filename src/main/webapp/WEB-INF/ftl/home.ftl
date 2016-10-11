@@ -20,6 +20,11 @@
             </form>
         </li>
         <li><a href="/user/${currentUser.id}">View myself</a></li>
+        <li><a href="/universities">View all universities</a></li>
+        <li><a href="/courses">View all courses</a></li>
+        <li><a href="/libraries">View all libraries</a></li>
+        <li><a href="/faculties">View all faculties</a></li>
+        <li><a href="/groups">View all groups</a></li>
     </#if>
     <#if currentUser?? && currentUser.role == "ADMIN">
         <li><a href="/user/create">Create a new user</a></li>

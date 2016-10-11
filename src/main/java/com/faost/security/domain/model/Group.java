@@ -10,16 +10,17 @@ import java.util.List;
 public class Group implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_group", nullable = false)
+    @SequenceGenerator(name="gr_sequence",sequenceName="gr_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="gr_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer groupId;
 
     @Column(name = "Name_group")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "Id_univer")
-    private University university;
+    @JoinColumn(name = "Id_faculty")
+    private Faculty faculty;
 
     @ManyToOne
     @JoinColumn(name = "Id_course")
@@ -60,12 +61,12 @@ public class Group implements Serializable{
         this.groupId = groupId;
     }
 
-    public University getUniversity() {
-        return university;
+    public Faculty getFaculty() {
+        return faculty;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 
     public Course getCourse() {
@@ -78,18 +79,13 @@ public class Group implements Serializable{
 
     public Group(){}
 
-    public Group(University university, Course course, String name, List<Student> students){
-        this.course = course;
-        this.name = name;
-        this.university = university;
-        this.students = students;
-    }
-
     @Override
     public String toString() {
-        return "Group{" + "groupId=" + groupId +
-                ", university=" + university.getName() +
-                ", course" + course.getNumber() +
-                ", name " + name + '}';
+        return "Group{" +
+                "groupId=" + groupId +
+                ", name='" + name + '\'' +
+                ", faculty=" + faculty +
+                ", course=" + course +
+                '}';
     }
 }

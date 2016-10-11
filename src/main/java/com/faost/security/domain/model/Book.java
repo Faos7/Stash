@@ -10,8 +10,9 @@ import java.util.Date;
 public class Book implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_book", nullable = false)
+    @SequenceGenerator(name="book_sequence",sequenceName="book_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="book_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer bookId;
 
     @Column(name = "Name_book")

@@ -1,4 +1,4 @@
-package com.faost.security.controller;
+package com.faost.security.controller.security;
 
 import com.faost.security.domain.security.UserCreateForm;
 import com.faost.security.service.user.UserService;

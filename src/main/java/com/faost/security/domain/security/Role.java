@@ -5,6 +5,6 @@ package com.faost.security.domain.security;
  */
 public enum Role {
 
-    USER, ADMIN
+    STUDENT, LIBRARIAN, ADMIN
 
 }

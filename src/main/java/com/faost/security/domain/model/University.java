@@ -10,8 +10,9 @@ import java.util.List;
 public class University implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id", nullable = false)
+    @SequenceGenerator(name="u_sequence",sequenceName="u_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="u_sequence")
+    @Column(name="id", unique=true, nullable=false)
     private Integer id;
 
     @Column(name = "name")
@@ -21,26 +22,16 @@ public class University implements Serializable{
     private List<Library> libraries;
 
     @OneToMany(mappedBy = "university")
-    private List<Group> groups;
+    private List<Faculty> faculties;
 
     public University() {}
-
-    public University(String univerName){
-        this.name = univerName;
-    }
-
-    public University(String univerName, List<Library> libraries, List<Group> groups) {
-        this.name = univerName;
-        this.libraries = libraries;
-        this.groups = groups;
-    }
 
     public List<Library> getLibraries() {
         return libraries;
     }
 
-    public void addGroup(Group group){
-        groups.add(group);
+    public void addFaculty(Faculty faculty){
+        faculties.add(faculty);
     }
 
     /*public void addGroups(int id){
@@ -48,8 +39,8 @@ public class University implements Serializable{
         groups.add()
     }*/
 
-    public void deleteGroup(Group group){
-        groups.remove(group);
+    public void deleteFaculty(Faculty faculty){
+        faculties.remove(faculty);
     }
 
     public void addLibrary(Library library){
@@ -72,12 +63,12 @@ public class University implements Serializable{
         this.id = univerId;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public List<Faculty> getFaculties() {
+        return faculties;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setFaculties(List<Faculty> faculties) {
+        this.faculties = faculties;
     }
 
     public String getName() {

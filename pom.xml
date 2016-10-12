@@ -45,10 +45,20 @@
 			</exclusions>
 		</dependency>
 
+		<!-- json api-->
+		<dependency>
+			<groupId>io.katharsis</groupId>
+			<artifactId>katharsis-servlet</artifactId>
+		</dependency>
+		<!-- json api-->
+
+		<!-- freemaker-->
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
-		</dependency>
+		</dependency> -->
+		<!-- freemaker-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

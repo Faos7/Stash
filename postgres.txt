@@ -1,0 +1,4 @@
+$ sudo -u postgres psql template1
+
+template1=# ALTER USER postgres with encrypted password '123';
+

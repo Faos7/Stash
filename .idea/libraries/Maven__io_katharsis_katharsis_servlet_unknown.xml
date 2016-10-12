@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Maven: io.katharsis:katharsis-servlet:unknown">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/io/katharsis/katharsis-servlet/unknown/katharsis-servlet-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/katharsis/katharsis-servlet/unknown/katharsis-servlet-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,5 +1,6 @@
 package com.faost.security.controller.security;
 
+import com.faost.security.domain.security.Role;
 import com.faost.security.domain.security.UserCreateForm;
 import com.faost.security.service.user.UserService;
 import com.faost.security.validator.UserCreateFormValidator;
@@ -66,6 +67,11 @@ public class UserController {
             LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
             bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
+        }
+        if (form.getRole().equals(Role.STUDENT)){
+
+        }else if (form.getRole().equals(Role.LIBRARIAN)){
+
         }
         // ok, redirect
         return "redirect:/users";

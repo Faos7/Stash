@@ -2,6 +2,7 @@ package com.faost.security.controller.model;
 
 import com.faost.security.domain.model.create.LibraryCreateForm;
 import com.faost.security.service.model.LibraryService;
+import com.faost.security.validator.LibraryCreateFormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -27,10 +26,18 @@ public class LibraryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseController.class);
 
     private final LibraryService libraryService;
+    private final LibraryCreateFormValidator libraryCreateFormValidator;
 
     @Autowired
-    public LibraryController(LibraryService libraryService) {
+    public LibraryController(LibraryService libraryService, LibraryCreateFormValidator libraryCreateFormValidator) {
+        this.libraryCreateFormValidator = libraryCreateFormValidator;
         this.libraryService = libraryService;
+    }
+
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(libraryCreateFormValidator);
     }
 
     @RequestMapping("/library/{id}")

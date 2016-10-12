@@ -1,8 +1,11 @@
 package com.faost.security.domain.model.create;
 
+import com.faost.security.domain.security.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class LibrarianCreateForm {
+
+    private User user;
 
     @NotEmpty
     private String firstName = "";
@@ -15,6 +18,18 @@ public class LibrarianCreateForm {
 
     @NotEmpty
     private String libraryName = "";
+
+    public LibrarianCreateForm(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getLibraryName() {
         return libraryName;

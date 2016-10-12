@@ -1,5 +1,9 @@
 package com.faost.security.controller.security;
 
+import com.faost.security.domain.model.create.LibrarianCreateForm;
+import com.faost.security.domain.model.create.StudentCreateForm;
+import com.faost.security.domain.security.Role;
+import com.faost.security.domain.security.User;
 import com.faost.security.domain.security.UserCreateForm;
 import com.faost.security.service.user.UserService;
 import com.faost.security.validator.UserCreateFormValidator;
@@ -50,6 +54,22 @@ public class UserController {
         return new ModelAndView("user_create", "form", new UserCreateForm());
     }
 
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/student/create", method = RequestMethod.GET)
+    public ModelAndView getStudentCreatePage(User user){
+        LOGGER.debug("Getting student create form");
+        return new ModelAndView("student_create", "form", new StudentCreateForm(user));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/librarian/create", method = RequestMethod.GET)
+    public ModelAndView getLibrarianCreatePage(User user){
+        LOGGER.debug("Getting librarian create form");
+        return new ModelAndView("librarian_create", "form", new LibrarianCreateForm(user));
+    }
+
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
@@ -59,7 +79,12 @@ public class UserController {
             return "user_create";
         }
         try {
-            userService.create(form);
+            User user = userService.create(form);
+            if (form.getRole().equals(Role.STUDENT)){
+                getStudentCreatePage(user);
+            }else if (form.getRole().equals(Role.LIBRARIAN)){
+                getLibrarianCreatePage(user);
+            }
         } catch (DataIntegrityViolationException e) {
             // probably email already exists - very rare case when multiple admins are adding same user
             // at the same time and form validation has passed for more than one of them.
@@ -67,6 +92,7 @@ public class UserController {
             bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
         }
+
         // ok, redirect
         return "redirect:/users";
     }

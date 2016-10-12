@@ -2,6 +2,7 @@ package com.faost.security.controller.model;
 
 import com.faost.security.domain.model.create.GroupCreateForm;
 import com.faost.security.service.model.GroupService;
+import com.faost.security.validator.GroupCreateFormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -26,11 +25,19 @@ public class GroupController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
 
-    private GroupService groupService;
+    private final GroupService groupService;
+    private final GroupCreateFormValidator groupCreateFormValidator;
 
     @Autowired
-    public GroupController(GroupService groupService) {
+    public GroupController(GroupService groupService, GroupCreateFormValidator groupCreateFormValidator) {
         this.groupService = groupService;
+        this.groupCreateFormValidator = groupCreateFormValidator;
+    }
+
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(groupCreateFormValidator);
     }
 
     @RequestMapping("/group/{id}")

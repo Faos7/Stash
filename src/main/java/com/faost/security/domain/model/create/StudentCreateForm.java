@@ -1,10 +1,13 @@
 package com.faost.security.domain.model.create;
 
+import com.faost.security.domain.security.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
 public class StudentCreateForm {
+
+    private User user;
 
     @NotEmpty
     private String firstName = "";
@@ -23,6 +26,18 @@ public class StudentCreateForm {
 
     @NotNull
     private Long numberRFID;
+
+    public StudentCreateForm(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getNumberRFID() {
         return numberRFID;

@@ -1,12 +1,16 @@
 package com.faost.security.controller.model;
 
+import com.faost.security.domain.model.create.StudentCreateForm;
+import com.faost.security.domain.security.User;
 import com.faost.security.service.model.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.NoSuchElementException;
@@ -37,5 +41,12 @@ public class StudentController {
     public ModelAndView getStudentsPage() {
         LOGGER.debug("Getting students page");
         return new ModelAndView("students", "students", studentService.getAllStudents());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/student/create", method = RequestMethod.GET)
+    public ModelAndView getStudentCreatePage(User user){
+        LOGGER.debug("Getting student create form");
+        return new ModelAndView("student_create", "form", new StudentCreateForm(user));
     }
 }

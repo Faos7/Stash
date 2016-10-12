@@ -15,6 +15,7 @@
 <h1>User details</h1>
 
 <p>E-mail: ${user.email}</p>
+<p>Student: ${user.student}</p>
 
 <p>Role: ${user.role}</p>
 </body>

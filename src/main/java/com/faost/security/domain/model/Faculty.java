@@ -1,5 +1,7 @@
 package com.faost.security.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -18,9 +20,10 @@ public class Faculty implements Serializable{
     @Column(name = "Name_faculty")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_univer")
-    private University university;
+    private com.faost.security.domain.model.University university;
 
     @OneToMany(mappedBy = "faculty")
     private List<Group> groups;
@@ -47,11 +50,11 @@ public class Faculty implements Serializable{
         this.name = name;
     }
 
-    public University getUniversity() {
+    public com.faost.security.domain.model.University getUniversity() {
         return university;
     }
 
-    public void setUniversity(University university) {
+    public void setUniversity(com.faost.security.domain.model.University university) {
         this.university = university;
     }
 

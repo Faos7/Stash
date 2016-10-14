@@ -1,10 +1,10 @@
 package com.faost.security.service.model.impl;
 
 import com.faost.security.domain.model.Book;
-import com.faost.security.domain.model.Librarian;
 import com.faost.security.domain.model.Library;
 import com.faost.security.domain.model.University;
 import com.faost.security.domain.model.create.LibraryCreateForm;
+import com.faost.security.domain.security.User;
 import com.faost.security.repository.model.LibraryRepository;
 import com.faost.security.repository.model.UniversityRepository;
 import com.faost.security.service.model.LibraryService;
@@ -51,10 +51,10 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public Collection<Librarian> getAllLibraryLibrarians(String name) {
+    public Collection<User> getAllLibraryLibrarians(String name) {
         LOGGER.debug("Getting library librarians, library name={}", name);
         Optional<Library> library = libraryRepository.findOneByName(name);
-        Collection<Librarian> librarians = library.get().getLibrarien();
+        Collection<User> librarians = library.get().getUsers();
         return librarians;
     }
 

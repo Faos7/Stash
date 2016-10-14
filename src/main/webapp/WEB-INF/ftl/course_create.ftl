@@ -20,8 +20,8 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <div>
-        <label for="numb">Number</label>
-        <input type="number" name="numb" id="numb" required autofocus/>
+        <label for="courseNumb">Number</label>
+        <input type="number" name="courseNumb" id="courseNumb" required autofocus/>
     </div>
     <button type="submit">Save</button>
 </form>

@@ -1,5 +1,9 @@
 package com.faost.security.domain.model;
 
+
+import com.faost.security.domain.security.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -18,20 +22,21 @@ public class Library implements Serializable{
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_univer")
     private University university;
 
     @OneToMany(mappedBy = "library")
-    private List<Librarian> librarien;
+    private List<User> users;
 
     @OneToMany(mappedBy = "library")
     private List<Book> books;
 
-    public void deleteLibrarian(Librarian librarian){librarien.remove(librarian);}
+    public void deleteLibrarian(User librarian){users.remove(librarian);}
 
-    public void addLibrarian(Librarian librarian){
-        librarien.add(librarian);
+    public void addLibrarian(User librarian){
+        users.add(librarian);
     }
 
     public void deleteBook(Book book){
@@ -50,12 +55,12 @@ public class Library implements Serializable{
         this.books = books;
     }
 
-    public List<Librarian> getLibrarien() {
-        return librarien;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setLibrarien(List<Librarian> librarien) {
-        this.librarien = librarien;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Integer getLibraryId() {
@@ -76,11 +81,7 @@ public class Library implements Serializable{
 
     public Library(){}
 
-    public Library(University university, List<Librarian> librarien, List<Book> books){
-        this.librarien = librarien;
-        this.university = university;
-        this.books = books;
-    }
+
 
     public String getName() {
         return name;
@@ -99,4 +100,3 @@ public class Library implements Serializable{
                 '}';
     }
 }
-

@@ -9,13 +9,12 @@ import java.util.List;
 @Table(name = "courses")
 public class Course implements Serializable{
     @Id
-    @SequenceGenerator(name="course_sequence",sequenceName="entity_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="course_sequence")
-    @Column(name="id", unique=true, nullable=false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "Id_course")
     private Integer courseId;
 
-    @Column(name = "number")
-    private Integer number;
+    @Column(name = "Course_numb")
+    private Integer courseNumb;
 
     @OneToMany(mappedBy = "course")
     private List<Group> groups;
@@ -23,7 +22,7 @@ public class Course implements Serializable{
     public Course(){}
 
     public Course(Integer courseNumb, List<Group> groups){
-        this.number = courseNumb;
+        this.courseNumb = courseNumb;
         this.groups = groups;
     }
 
@@ -33,6 +32,10 @@ public class Course implements Serializable{
 
     public void deleteGroup(Group group){
         groups.remove(group);
+    }
+
+    public int getNumderOfGroups(){
+        return groups.size();
     }
 
     public List<Group> getGroups() {
@@ -51,18 +54,18 @@ public class Course implements Serializable{
         this.courseId = courseId;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getCourseNumb() {
+        return courseNumb;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setCourseNumb(Integer courseNumb) {
+        this.courseNumb = courseNumb;
     }
 
     @Override
     public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", number=" + number + '}';
+        return "Course{" + "courseId=" + courseId +
+                ", courseNumb=" + courseNumb +
+                ", number of groups=" + getNumderOfGroups() +'}';
     }
 }

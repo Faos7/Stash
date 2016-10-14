@@ -90,7 +90,7 @@ public class BookServiceImpl implements BookService {
         Book book = new Book();
         book.setAuthorName(form.getAuthorName());
         book.setBookName(form.getBookName());
-        book.setNumber(form.getNumber());
+        book.setNumber(""+form.getNumber());
         book.setPublYear(form.getPublishingYear());
         book.setLibrary(library.get());
         library.get().addBook(book);

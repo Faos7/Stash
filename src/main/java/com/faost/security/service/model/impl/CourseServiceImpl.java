@@ -35,7 +35,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Optional<Course> getCourseByNumber(int number) {
         LOGGER.debug("Getting course by number={}", number);
-        return courseRepository.findOneByNumber(number);
+        return courseRepository.findOneByCourseNumb(number);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Collection<Group> getAllCourseGroups(int number) {
         LOGGER.debug("Getting course groups, course number={}", number);
-        Optional<Course> course = courseRepository.findOneByNumber(number);
+        Optional<Course> course = courseRepository.findOneByCourseNumb(number);
         Collection<Group> groups = course.get().getGroups();
         return groups;
     }
@@ -55,7 +55,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course create(CourseCreateForm form) {
         Course course = new Course();
-        course.setNumber(form.getNumb());
+        course.setCourseNumb(form.getNumb());
         return courseRepository.save(course);
     }
 }

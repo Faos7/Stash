@@ -2,6 +2,7 @@ package com.faost.security.controller.model;
 
 import com.faost.security.domain.model.create.FacultyCreateForm;
 import com.faost.security.service.model.FacultyService;
+import com.faost.security.validator.FacultyCreateFormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -23,11 +22,19 @@ public class FacultyController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FacultyController.class);
 
-    private FacultyService facultyService;
+    private final FacultyService facultyService;
+    private final FacultyCreateFormValidator facultyCreateFormValidator;
 
     @Autowired
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyService facultyService, FacultyCreateFormValidator facultyCreateFormValidator) {
         this.facultyService = facultyService;
+        this.facultyCreateFormValidator = facultyCreateFormValidator;
+    }
+
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(facultyCreateFormValidator);
     }
 
     @RequestMapping("/faculty/{id}")

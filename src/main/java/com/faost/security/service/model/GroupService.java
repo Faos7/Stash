@@ -1,8 +1,8 @@
 package com.faost.security.service.model;
 
 import com.faost.security.domain.model.Group;
-import com.faost.security.domain.model.Student;
 import com.faost.security.domain.model.create.GroupCreateForm;
+import com.faost.security.domain.security.User;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -16,5 +16,5 @@ public interface GroupService {
 
     Group create(GroupCreateForm form);
 
-    Collection<Student> getAllGroupStudents(String name);
+    Collection<User> getAllGroupStudents(String name);
 }

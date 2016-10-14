@@ -1,6 +1,8 @@
 package com.faost.security.domain.security;
 
+import com.faost.security.repository.model.RoleRepository;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,6 +12,11 @@ import javax.validation.constraints.NotNull;
  */
 
 public class UserCreateForm {
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+
     @NotEmpty
     private String email = "";
 
@@ -20,7 +27,7 @@ public class UserCreateForm {
     private String passwordRepeated = "";
 
     @NotNull
-    private Role role = Role.STUDENT;
+    private Role role = roleRepository.findOne(2L);
 
     public String getEmail() {
         return email;

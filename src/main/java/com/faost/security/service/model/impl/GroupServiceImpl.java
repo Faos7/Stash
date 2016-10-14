@@ -3,8 +3,8 @@ package com.faost.security.service.model.impl;
 import com.faost.security.domain.model.Course;
 import com.faost.security.domain.model.Faculty;
 import com.faost.security.domain.model.Group;
-import com.faost.security.domain.model.Student;
 import com.faost.security.domain.model.create.GroupCreateForm;
+import com.faost.security.domain.security.User;
 import com.faost.security.repository.model.CourseRepository;
 import com.faost.security.repository.model.FacultyRepository;
 import com.faost.security.repository.model.GroupRepository;
@@ -58,17 +58,17 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Collection<Student> getAllGroupStudents(String name) {
+    public Collection<User> getAllGroupStudents(String name) {
         LOGGER.debug("Getting group students, group name={}", name);
         Optional<Group> group = groupRepository.findOneByName(name);
-        Collection<Student> students = group.get().getStudents();
+        Collection<User> students = group.get().getUsers();
         return students;
     }
 
     @Override
     public Group create(GroupCreateForm form) {
         Optional<Faculty> faculty = facultyRepository.findOneByName(form.getFacultyName());
-        Optional<Course> course = courseRepository.findOneByNumber(form.getCourseNumber());
+        Optional<Course> course = courseRepository.findOneByCourseNumb(form.getCourseNumber());
         Group group = new Group();
         group.setName(form.getName());
         group.setCourse(course.get());

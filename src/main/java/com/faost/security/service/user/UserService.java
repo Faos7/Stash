@@ -10,10 +10,16 @@ public interface UserService {
 
     Optional<User> getUserById(Long id);
 
-    Optional<User> getUserByEmail(String email);
+    Optional<User> getUserByUsername(String username);
 
     Collection<User> getAllUsers();
 
     User create(UserCreateForm form);
+
+    Collection<User> getAllUsersWithSpecifiedRole(String role);
+
+    Collection<User> getAllGroupStudents(int id);
+
+    Collection<User> getAllLibrarians(int id);
 
 }

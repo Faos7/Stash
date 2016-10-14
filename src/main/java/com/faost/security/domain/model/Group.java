@@ -1,5 +1,9 @@
 package com.faost.security.domain.model;
 
+
+import com.faost.security.domain.security.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -18,31 +22,33 @@ public class Group implements Serializable{
     @Column(name = "Name_group")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_faculty")
     private Faculty faculty;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_course")
     private Course course;
 
     @OneToMany(mappedBy = "group")
-    private List<Student> students;
+    private List<User> users;
 
-    public void addStudent(Student student){
-        students.add(student);
+    public void addStudent(User student){
+        users.add(student);
     }
 
-    public void deleteStudent(Student student){
-        students.remove(student);
+    public void deleteStudent(User student){
+        users.remove(student);
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Integer getGroupId() {

@@ -25,7 +25,8 @@ public class UserController {
     private final UserCreateFormValidator userCreateFormValidator;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
+    public UserController(UserService userService,
+                          UserCreateFormValidator userCreateFormValidator) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
     }
@@ -50,6 +51,8 @@ public class UserController {
         return new ModelAndView("user_create", "form", new UserCreateForm());
     }
 
+
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
@@ -60,6 +63,7 @@ public class UserController {
         }
         try {
             userService.create(form);
+
         } catch (DataIntegrityViolationException e) {
             // probably email already exists - very rare case when multiple admins are adding same user
             // at the same time and form validation has passed for more than one of them.
@@ -67,6 +71,7 @@ public class UserController {
             bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
         }
+
         // ok, redirect
         return "redirect:/users";
     }

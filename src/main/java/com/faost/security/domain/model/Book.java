@@ -1,9 +1,12 @@
 package com.faost.security.domain.model;
 
+import com.faost.security.domain.security.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -23,10 +26,10 @@ public class Book implements Serializable{
 
     @Column(name = "Publ_year")
     private int publYear;
-
     @Column(name = "number")
-    private int number;
+    private String number;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_library")
     private Library library;
@@ -34,9 +37,10 @@ public class Book implements Serializable{
     @Column(name = "OnlyHere")
     private Boolean onlyHere;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Id_owner")
-    private Student student;
+    private User user;
 
     @Column(name = "DateTime")
     @Temporal(TemporalType.TIMESTAMP)
@@ -46,12 +50,35 @@ public class Book implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTo;
 
-    public int getNumber() {
+    @JsonIgnore
+    @OneToMany(mappedBy = "book")
+    private List<Transaction> transactions;
+
+    @JoinColumn(name = "free")
+    private boolean isFree;
+
+    public boolean isFree() {
+        return isFree;
+    }
+
+    public void setFree(boolean free) {
+        isFree = free;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNumber(String number) {
+        this.number = library.getLibraryId() + number;
     }
 
     public Boolean getOnlyHere() {
@@ -98,8 +125,8 @@ public class Book implements Serializable{
         return dateTo;
     }
 
-    public Student getStudent() {
-        return student;
+    public User getUser() {
+        return user;
     }
 
     public void setDateFrom(Date dateFrom) {
@@ -122,24 +149,11 @@ public class Book implements Serializable{
         this.onlyHere = onlyHere;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Book(){}
-
-    public Book(String bookName, String authorName,
-                int publYear, Library library, Boolean onlyHere,
-                Student student, Date dateFrom, Date dateTo){
-        this.bookName = bookName;
-        this.authorName = authorName;
-        this.publYear = publYear;
-        this.library = library;
-        this.onlyHere = onlyHere;
-        this.student = student;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-    }
 
     @Override
     public String toString() {
@@ -150,8 +164,10 @@ public class Book implements Serializable{
                 ", library=" + library.getLibraryId()+
                 ", number=" + number +
                 ", onlyHere=" + onlyHere +
-                ", owner=" + student.getStudentId() +
+                ", owner=" + user.getId() +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +'}';
     }
+
+
 }

@@ -29,7 +29,7 @@ public class CurrentUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 
-        User user = userRepository.findOneByUsername(username).get();
+        User user = userRepository.findOneByEmail(username).get();
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

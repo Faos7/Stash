@@ -9,12 +9,13 @@ import java.util.List;
 @Table(name = "courses")
 public class Course implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @SequenceGenerator(name="course_sequence",sequenceName="u_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="course_sequence")
     @Column(name = "Id_course")
     private Integer courseId;
 
     @Column(name = "Course_numb")
-    private Integer courseNumb;
+    private Integer number;
 
     @OneToMany(mappedBy = "course")
     private List<Group> groups;
@@ -22,7 +23,7 @@ public class Course implements Serializable{
     public Course(){}
 
     public Course(Integer courseNumb, List<Group> groups){
-        this.courseNumb = courseNumb;
+        this.number = courseNumb;
         this.groups = groups;
     }
 
@@ -54,18 +55,11 @@ public class Course implements Serializable{
         this.courseId = courseId;
     }
 
-    public Integer getCourseNumb() {
-        return courseNumb;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setCourseNumb(Integer courseNumb) {
-        this.courseNumb = courseNumb;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" + "courseId=" + courseId +
-                ", courseNumb=" + courseNumb +
-                ", number of groups=" + getNumderOfGroups() +'}';
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

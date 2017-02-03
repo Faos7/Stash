@@ -16,7 +16,7 @@ public class GroupCreateForm {
     private int courseNumber = -1;
 
     @NotEmpty
-    private String universityName;
+    private String universityName = "";
 
     public String getUniversityName() {
         return universityName;

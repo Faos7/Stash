@@ -24,7 +24,7 @@
     <tbody>
     <#list courses as course>
     <tr>
-        <td><a href="/course/${course.courseId}">${course.courseNumb}</a></td>
+        <td><a href="/course/${course.courseId}">${course.number}</a></td>
     </tr>
     </#list>
     </tbody>

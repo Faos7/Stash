@@ -22,7 +22,7 @@ public class Role {
     @SequenceGenerator(name="role_sequence",sequenceName="role_id_seq", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="role_sequence")
     @Column(name="id", unique=true, nullable=false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -34,11 +34,11 @@ public class Role {
     public Role() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,12 +58,5 @@ public class Role {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
-    }
+
 }

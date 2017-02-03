@@ -21,7 +21,7 @@
 
     <div>
         <label for="courseNumb">Number</label>
-        <input type="number" name="courseNumb" id="courseNumb" required autofocus/>
+        <input type="number" name="numb" id="numb" required autofocus/>
     </div>
     <button type="submit">Save</button>
 </form>

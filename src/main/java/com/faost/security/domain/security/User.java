@@ -53,7 +53,7 @@ public class User implements Serializable{
     private List<Book> books;
 
     @Column(name = "username")
-    private String username;
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -102,12 +102,12 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

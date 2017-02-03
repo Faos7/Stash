@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserByUsername (String email) {
         LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
-        return userRepository.findOneByUsername(email);
+        return userRepository.findOneByEmail(email);
     }
 
     @Override
@@ -59,10 +59,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(UserCreateForm form) {
+        Role role = roleRepository.findOneByName(form.getRole());
         User user = new User();
-        user.setUsername(form.getEmail());
+        user.setEmail(form.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
-        user.setRole(form.getRole());
+        user.setRole(role);
         return userRepository.save(user);
     }
 

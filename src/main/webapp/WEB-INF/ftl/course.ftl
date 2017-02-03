@@ -14,7 +14,7 @@
 
 <h1>Course details</h1>
 
-<p>Number: ${course.courseNumb}</p>
+<p>Number: ${course.number}</p>
 
 </body>
 </html>

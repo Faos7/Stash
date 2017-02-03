@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    Optional<Course> findOneByCourseNumb(int courseNumb);
+    Optional<Course> findOneByNumber(int number);
 }

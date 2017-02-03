@@ -68,7 +68,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group create(GroupCreateForm form) {
         Optional<Faculty> faculty = facultyRepository.findOneByName(form.getFacultyName());
-        Optional<Course> course = courseRepository.findOneByCourseNumb(form.getCourseNumber());
+        Optional<Course> course = courseRepository.findOneByNumber(form.getCourseNumber());
         Group group = new Group();
         group.setName(form.getName());
         group.setCourse(course.get());

@@ -1,5 +1,8 @@
-# E-Key
-From Paper To Web
+# Stash
+This repo is used to try new features or play with spring boot && security && ftl;
+
+In the begining it was one of first steps to implement E-key project(described below);
+
 
 ## Run App
 ```sh
